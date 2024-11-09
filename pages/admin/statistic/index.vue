@@ -2,7 +2,7 @@
 import AdvancedButton from "~/components/ui/AdvancedButton.vue";
 
 definePageMeta({
-  layout: "",
+  layout: "admin",
   middleware: ["admin"],
 });
 

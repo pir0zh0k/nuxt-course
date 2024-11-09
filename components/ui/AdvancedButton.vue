@@ -2,6 +2,7 @@
 interface Props {
   variant?: "primary" | "outlined";
   fullWidth?: boolean;
+  icon?: string;
 }
 
 withDefaults(defineProps<Props>(), {
@@ -18,6 +19,7 @@ withDefaults(defineProps<Props>(), {
     }"
   >
     <slot></slot>
+    <Icon v-if="icon" :name="icon" />
   </button>
 </template>
 
@@ -28,6 +30,10 @@ withDefaults(defineProps<Props>(), {
   display: inline-block;
   padding: 8px 20px;
   border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 
   &__primary {
     transition: background 0.2s ease;

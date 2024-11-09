@@ -5,13 +5,22 @@ interface Props {
   disabled?: boolean;
 }
 
-defineProps<Props>();
+withDefaults(defineProps<Props>(), {
+  type: "text",
+});
 
 const value = defineModel();
 </script>
 
 <template>
+  <textarea
+    v-if="type == 'textarea'"
+    class="input _textarea"
+    :placeholder="placeholder"
+    v-model="value"
+  ></textarea>
   <input
+    v-else
     class="input"
     :type="type"
     v-model="value"
@@ -30,6 +39,12 @@ const value = defineModel();
 
   &::placeholder {
     color: $slate-50;
+  }
+
+  &._textarea {
+    resize: none;
+    width: 100%;
+    min-height: 200px;
   }
 }
 </style>

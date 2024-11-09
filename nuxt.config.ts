@@ -11,9 +11,13 @@ export default defineNuxtConfig({
     "nuxt-typed-router",
     "nuxt-file-storage",
     "nuxt-auth-utils",
+    "@nuxt/icon",
   ],
   fonts: {
     families: [{ name: "montserrat", provider: "google" }],
+  },
+  fileStorage: {
+    mount: "public/files/",
   },
   css: ["~/assets/scss/global.scss"],
   vite: {

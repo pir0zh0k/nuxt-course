@@ -2,10 +2,12 @@
 interface Props {
   variant?: "base" | "primary" | "outlined";
   to?: string;
+  size?: "base" | "lg" | "xl" | "2xl";
 }
 
 withDefaults(defineProps<Props>(), {
   variant: "base",
+  size: "base",
 });
 </script>
 
@@ -14,8 +16,9 @@ withDefaults(defineProps<Props>(), {
     class="link"
     :class="{
       [`link__${variant}`]: variant,
+      [`_${size}`]: size,
     }"
-    to=""
+    :to="to"
   >
     <slot></slot>
   </NuxtLink>
@@ -58,6 +61,22 @@ withDefaults(defineProps<Props>(), {
     &:hover {
       text-decoration-color: $slate-50;
     }
+  }
+
+  &._base {
+    @include Text-base;
+  }
+
+  &._lg {
+    @include Text-lg;
+  }
+
+  &._xl {
+    @include Text-xl;
+  }
+
+  &._2xl {
+    @include Text-2xl;
   }
 }
 </style>
