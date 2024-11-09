@@ -33,7 +33,7 @@ console.log(videoList.value);
         </AdvancedButton>
       </div>
       <div class="video__body">
-        <table class="video__table">
+        <table class="video-table">
           <thead class="video-table__head">
             <tr>
               <th>Видео</th>
