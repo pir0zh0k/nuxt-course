@@ -18,9 +18,18 @@ const addVideo = async () => {
   await router.push({ path: "/admin/video/add" });
 };
 
-const { data: videoList } = await useFetch("/api/video");
+const { data: videoList, refresh } = await useFetch("/api/video");
 
-console.log(videoList.value);
+const deleteVideo = async (id: number) => {
+  await $fetch("/api/video/delete", {
+    method: "POST",
+    body: {
+      id: id,
+    },
+  });
+
+  await refresh();
+};
 </script>
 
 <template>
@@ -47,8 +56,9 @@ console.log(videoList.value);
               <th>
                 <div class="video-info">
                   <div class="video-info__preview">
-                    <NuxtImg
+                    <img
                       :src="`/files/poster/${videoListItem.video.posterFileName}`"
+                      :alt="videoListItem.video.title"
                     />
                   </div>
                   <div class="video-info__content">
@@ -84,9 +94,9 @@ console.log(videoList.value);
                   <Link :to="`/admin/video/edit/${videoListItem.video.id}`">
                     <Icon size="20" name="fa6-solid:pen" />
                   </Link>
-                  <Link :to="`/admin/video/delete/${videoListItem.video.id}`">
+                  <div @click="deleteVideo(videoListItem.video.id)">
                     <Icon size="20" name="fa6-solid:trash" />
-                  </Link>
+                  </div>
                 </div>
               </th>
             </tr>
